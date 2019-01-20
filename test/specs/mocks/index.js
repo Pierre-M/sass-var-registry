@@ -1,11 +1,20 @@
 "use strict";
 
+import {varTypes} from "../../../src/varTypes";
+
 const stringVar = {
     input: '$var: var;',
     rawOutput: [{
         name: '$var',
         value: 'var'
-    }]
+    }],
+    formattedOutput: [
+        {
+            name: '$var',
+            value: 'var',
+            type: varTypes.string
+        }
+    ]
 };
 
 const dynamicStringVar = {
@@ -13,7 +22,14 @@ const dynamicStringVar = {
     rawOutput: [{
         name: '$var',
         value: '$otherVar'
-    }]
+    }],
+    formattedOutput: [
+        {
+            name: '$var',
+            value: '$otherVar',
+            type: varTypes.key
+        }
+    ]
 };
 
 const stringVarIntoCommentSection = {
@@ -54,7 +70,18 @@ key3: value
     rawOutput: [{
         name: '$map',
         value: '(key1: value,key2: value,key3: value)'
-    }]
+    }],
+    formattedOutput: [
+        {
+            name: '$map',
+            value: {
+                key1: 'value',
+                key2: 'value',
+                key3: 'value'
+            },
+            type: varTypes.map
+        }
+    ]
 };
 
 const listVar = {
@@ -62,7 +89,14 @@ const listVar = {
     rawOutput: [{
         name: '$list',
         value: 'value value value'
-    }]
+    }],
+    formattedOutput: [
+        {
+            name: '$list',
+            value: ['value', 'value', 'value'],
+            type: varTypes.list
+        }
+    ]
 };
 
 const globalContent = {
@@ -82,7 +116,7 @@ const globalContent = {
         ...mapVar.rawOutput,
         ...listVar.rawOutput
     ]
-}
+};
 
 export {
     stringVar,
