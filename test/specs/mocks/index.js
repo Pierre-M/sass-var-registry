@@ -8,6 +8,14 @@ const stringVar = {
     }]
 };
 
+const dynamicStringVar = {
+    input: '$var: $otherVar;',
+    rawOutput: [{
+        name: '$var',
+        value: '$otherVar'
+    }]
+};
+
 const stringVarIntoCommentSection = {
     input: `
         /*
@@ -78,6 +86,7 @@ const globalContent = {
 
 export {
     stringVar,
+    dynamicStringVar,
     stringVarIntoCommentSection,
     stringVarIntoMixin,
     stringVarIntoFunction,

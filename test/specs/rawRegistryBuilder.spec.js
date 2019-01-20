@@ -6,6 +6,7 @@ import {
     listVar,
     mapVar,
     stringVar,
+    dynamicStringVar,
     stringVarIntoCommentSection,
     stringVarIntoFunction,
     stringVarIntoMixin
@@ -40,6 +41,12 @@ describe('sass-var-registry - rawRegistryBuilder', () => {
         const result = buildRawRegistry(stringVar.input);
 
         expect(result).to.deep.equal(stringVar.rawOutput);
+    });
+
+    it('should add dynamic string variables', () => {
+        const result = buildRawRegistry(dynamicStringVar.input);
+
+        expect(result).to.deep.equal(dynamicStringVar.rawOutput);
     });
 
     it('should add map variables', () => {

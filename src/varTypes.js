@@ -1,5 +1,8 @@
 "use strict";
 
 export const varTypes = {
-    string: 'string'
+    string: 'string',
+    map: 'map',
+    list: 'list',
+    key: 'key'
 };
