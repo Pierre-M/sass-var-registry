@@ -1,6 +1,6 @@
 "use strict";
 
-import {getTypeFromStringValue} from "../../src/types/typeCheckService";
+import {getTypeFromStringValue} from "../../src/typeCheckService";
 import {stringVar, mapVar, listVar, dynamicStringVar} from './mocks';
 import {varTypes} from '../../src/varTypes';
 

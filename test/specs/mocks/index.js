@@ -62,22 +62,22 @@ const stringVarIntoFunction = {
 const mapVar = {
     input: `
 $map: (
-key1: value,
-key2: value,
-key3: value
+key1: value
 );
     `,
     rawOutput: [{
         name: '$map',
-        value: '(key1: value,key2: value,key3: value)'
+        value: '(key1: value)'
     }],
     formattedOutput: [
         {
             name: '$map',
             value: {
-                key1: 'value',
-                key2: 'value',
-                key3: 'value'
+                key1: {
+                    name: 'key1',
+                    value: 'value',
+                    type: varTypes.string
+                }
             },
             type: varTypes.map
         }
@@ -95,6 +95,75 @@ const listVar = {
             name: '$list',
             value: ['value', 'value', 'value'],
             type: varTypes.list
+        }
+    ]
+};
+
+const nestedMapVar = {
+    input: `
+$nestedMap: (
+key1: value,
+key2: (
+nestedKey1: value,
+nestedKey2: value
+),
+key3: (
+nestedKey1: (
+key1: value
+)
+)
+);   
+`,
+    rawOutput: [
+        {
+            name: '$nestedMap',
+            value: '(key1: value,key2: (nestedKey1: value,nestedKey2: value),key3: (nestedKey1: (key1: value)))'
+        }
+    ],
+    formattedOutput: [
+        {
+            name: '$nestedMap',
+            value: {
+                key1: {
+                    name: 'key1',
+                    value: 'value',
+                    type: varTypes.string
+                },
+                key2: {
+                    name: 'key2',
+                    value: {
+                        nestedKey1: {
+                            name: 'nestedKey1',
+                            value: 'value',
+                            type: varTypes.string
+                        },
+                        nestedKey2: {
+                            name: 'nestedKey2',
+                            value: 'value',
+                            type: varTypes.string
+                        }
+                    },
+                    type: varTypes.map
+                },
+                key3: {
+                    name: 'key3',
+                    value: {
+                        nestedKey1: {
+                            name: 'nestedKey1',
+                            value: {
+                                key1: {
+                                    name: 'key1',
+                                    value: 'value',
+                                    type: varTypes.string
+                                }
+                            },
+                            type: varTypes.map
+                        }
+                    },
+                    type: varTypes.map
+                }
+            },
+            type: varTypes.map
         }
     ]
 };
@@ -126,5 +195,6 @@ export {
     stringVarIntoFunction,
     mapVar,
     listVar,
-    globalContent
+    globalContent,
+    nestedMapVar
 }

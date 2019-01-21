@@ -1,6 +1,6 @@
 "use strict";
 
-import {getTypeFromStringValue} from "./types/typeCheckService";
+import {getTypeFromStringValue} from "./typeCheckService";
 import * as typeFormatters from "./types";
 
 export function formatRegistryEntry(registryEntry) {

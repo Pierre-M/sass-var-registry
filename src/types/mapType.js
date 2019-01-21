@@ -1,8 +1,69 @@
 "use strict";
 
 import {varTypes} from "../varTypes";
+import {formatRegistryEntry} from "../entryFormatterService";
 
 const MAP_VAR_MATCH_REGEXP = /^[\(].*[\)]$/g;
+
+function getMapValue(mapStringDef) {
+    return mapStringDef
+        .substring(1, mapStringDef.length - 1);
+}
+
+function getMapStringValueSplitIndexes(mapValue) {
+    const characters = mapValue.split('');
+    let nestedLevel = 0;
+
+    return characters.reduce((indexes, char, index) => {
+        if (char === '(') {
+            nestedLevel++;
+        }
+
+        if (char === ')') {
+            nestedLevel--;
+        }
+
+        if (char === ',' && !nestedLevel) {
+            indexes.push(index);
+        }
+
+        return indexes;
+    }, [-1])
+}
+
+function getMapParts(mapStringDef) {
+    const mapValue = getMapValue(mapStringDef);
+    const splitIndexes = getMapStringValueSplitIndexes(mapValue);
+
+    return splitIndexes.reduce((parts, idx, splitIdxIdx, splitIndexes) => {
+        const start = idx + 1;
+        const end = splitIdxIdx === splitIndexes.length -1 ? mapValue.length : splitIndexes[splitIdxIdx + 1];
+        const part = mapValue.substring(start, end);
+
+        return parts.concat([part]);
+    }, []);
+}
+
+function mapPartFormatter(parts) {
+    return parts
+        .reduce((mapDef, line) => {
+            const key = line.split(':')[0].trim();
+            const value = line.substring(line.indexOf(':') + 1).trim();
+
+            return {
+                ...mapDef,
+                ...{
+                    [key]: formatRegistryEntry({name: key, value})
+                }
+            }
+        }, {})
+}
+
+function mapValueParser(mapStringDef) {
+    const mapParts = getMapParts(mapStringDef);
+
+    return mapPartFormatter(mapParts);
+}
 
 export const mapType = {
     type: varTypes.map,
@@ -10,20 +71,7 @@ export const mapType = {
     format: entry => {
         return {
             name: entry.name,
-            value: entry.value.
-            substring(1, entry.value.length - 1)
-                .split(',')
-                .reduce((mapDef, line) => {
-                    const key = line.split(':')[0].trim();
-                    const value = line.split(':')[1].trim();
-
-                    return {
-                        ...mapDef,
-                        ...{
-                            [key]: value
-                        }
-                    }
-                }, {}),
+            value: mapValueParser(entry.value),
             type: varTypes.map
         }
     }

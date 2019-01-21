@@ -9,7 +9,7 @@ import {
     dynamicStringVar,
     stringVarIntoCommentSection,
     stringVarIntoFunction,
-    stringVarIntoMixin
+    stringVarIntoMixin, nestedMapVar
 } from "./mocks";
 
 describe('sass-var-registry - rawRegistryBuilder', () => {
