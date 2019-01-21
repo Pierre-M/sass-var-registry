@@ -109,7 +109,7 @@ nestedKey2: value
 ),
 key3: (
 nestedKey1: (
-key1: value
+key1: $value
 )
 )
 );   
@@ -117,7 +117,7 @@ key1: value
     rawOutput: [
         {
             name: '$nestedMap',
-            value: '(key1: value,key2: (nestedKey1: value,nestedKey2: value),key3: (nestedKey1: (key1: value)))'
+            value: '(key1: value,key2: (nestedKey1: value,nestedKey2: value),key3: (nestedKey1: (key1: $value)))'
         }
     ],
     formattedOutput: [
@@ -153,8 +153,8 @@ key1: value
                             value: {
                                 key1: {
                                     name: 'key1',
-                                    value: 'value',
-                                    type: varTypes.string
+                                    value: '$value',
+                                    type: varTypes.key
                                 }
                             },
                             type: varTypes.map
