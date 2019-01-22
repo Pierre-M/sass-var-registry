@@ -1,13 +1,13 @@
 "use strict";
 
-import {stringType} from "./stringType";
-import {keyType} from "./keyType";
-import {mapType} from "./mapType";
-import {listType} from "./listType";
+const {stringType} = require("./stringType");
+const {keyType} = require("./keyType");
+const {mapType} = require("./mapType");
+const {listType} = require("./listType");
 
-export {
+module.exports = {
     stringType,
     keyType,
     mapType,
     listType
-}
+};

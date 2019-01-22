@@ -1,16 +1,7 @@
 "use strict";
 
-import {buildRawRegistry} from "../../src/rawRegistryBuilder";
-import {
-    globalContent,
-    listVar,
-    mapVar,
-    stringVar,
-    dynamicStringVar,
-    stringVarIntoCommentSection,
-    stringVarIntoFunction,
-    stringVarIntoMixin, nestedMapVar
-} from "./mocks";
+const {buildRawRegistry} = require( "../../src/rawRegistryBuilder");
+const mocks = require("./mocks");
 
 describe('sass-var-registry - rawRegistryBuilder', () => {
     it('should return an array', () => {
@@ -20,38 +11,38 @@ describe('sass-var-registry - rawRegistryBuilder', () => {
     });
 
     it('should exlude comment sections', () => {
-        const result = buildRawRegistry(stringVarIntoCommentSection.input);
+        const result = buildRawRegistry(mocks.stringVarIntoCommentSection.input);
 
-        expect(result).to.deep.equal(stringVarIntoCommentSection.rawOutput);
+        expect(result).to.deep.equal(mocks.stringVarIntoCommentSection.rawOutput);
     });
 
     it('should add string variables', () => {
-        const result = buildRawRegistry(stringVar.input);
+        const result = buildRawRegistry(mocks.stringVar.input);
 
-        expect(result).to.deep.equal(stringVar.rawOutput);
+        expect(result).to.deep.equal(mocks.stringVar.rawOutput);
     });
 
     it('should add dynamic string variables', () => {
-        const result = buildRawRegistry(dynamicStringVar.input);
+        const result = buildRawRegistry(mocks.dynamicStringVar.input);
 
-        expect(result).to.deep.equal(dynamicStringVar.rawOutput);
+        expect(result).to.deep.equal(mocks.dynamicStringVar.rawOutput);
     });
 
     it('should add map variables', () => {
-        const result = buildRawRegistry(mapVar.input);
+        const result = buildRawRegistry(mocks.mapVar.input);
 
-        expect(result).to.deep.equal(mapVar.rawOutput);
+        expect(result).to.deep.equal(mocks.mapVar.rawOutput);
     });
 
     it('should add list variables', function () {
-        const result = buildRawRegistry(listVar.input);
+        const result = buildRawRegistry(mocks.listVar.input);
 
-        expect(result).to.deep.equal(listVar.rawOutput);
+        expect(result).to.deep.equal(mocks.listVar.rawOutput);
     });
 
     it('should build correct registry for complex content', function () {
-        const result = buildRawRegistry(globalContent.input);
+        const result = buildRawRegistry(mocks.globalContent.input);
 
-        expect(result).to.deep.equal(globalContent.rawOutput);
+        expect(result).to.deep.equal(mocks.globalContent.rawOutput);
     });
 });

@@ -1,8 +1,8 @@
 "use strict";
 
-import {getTypeFromStringValue} from "../../src/typeCheckService";
-import {stringVar, mapVar, listVar, dynamicStringVar} from './mocks';
-import {varTypes} from '../../src/varTypes';
+const {getTypeFromStringValue} = require( "../../src/typeCheckService");
+const {stringVar, mapVar, listVar, dynamicStringVar} = require( './mocks');
+const {varTypes} = require( '../../src/varTypes');
 
 describe('sass-var-registry - typeCheckService', () => {
 

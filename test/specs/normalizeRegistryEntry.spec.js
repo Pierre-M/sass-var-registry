@@ -1,38 +1,7 @@
 "use strict";
 
-import {normalizeRegistryEntry} from "../../src/entryNormalizerService";
-import * as mocks from './mocks';
-
-const FAKE_REGISTRY = [
-    {
-        name: '$var',
-        value: 'foo',
-        type: 'string'
-    },
-    // {
-    //     name: '$map',
-    //     value: {
-    //         key1: {
-    //             type: 'string',
-    //             value: 'foo',
-    //             name: 'key1'
-    //         }
-    //     }
-    // }
-];
-
-const EXPECTED = [
-    {
-        name: '$var',
-        value: 'foo'
-    },
-    // {
-    //     name: '$map',
-    //     value: {
-    //         key1: 'foo'
-    //     }
-    // }
-]
+const  {normalizeRegistryEntry} = require("../../src/entryNormalizerService");
+const mocks = require('./mocks');
 
 describe('sass-var-registry - registryFormatter', () => {
 

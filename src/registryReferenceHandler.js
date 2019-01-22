@@ -1,8 +1,9 @@
 "use strict";
 
-import {varTypes} from "./varTypes";
+const {varTypes} = require("./varTypes");
 
-export function handleRegistryReference(entry, registry) {
+function handleRegistryReference(entry, registry) {
+
     if (entry.type === varTypes.map) {
         return {
             ...entry,
@@ -26,3 +27,5 @@ export function handleRegistryReference(entry, registry) {
 
     return entry;
 }
+
+module.exports = {handleRegistryReference};

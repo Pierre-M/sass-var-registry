@@ -1,9 +1,9 @@
 "use strict";
 
-import {handleRegistryReference} from "../../src/registryReferenceHandler";
+const {handleRegistryReference} = require( "../../src/registryReferenceHandler");
 
-import * as mocks from './mocks';
-import {varTypes} from "../../src/varTypes";
+const mocks = require('./mocks');
+const {varTypes} = require( "../../src/varTypes");
 
 const fakeKeyVarEntry = {
     name: '$keyVar',

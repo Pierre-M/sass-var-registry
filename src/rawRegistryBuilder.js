@@ -47,6 +47,6 @@ function normalizeValue(rawValue) {
         .replace(/[;\n]/g, '');
 }
 
-export {
+module.exports = {
     buildRawRegistry
 }

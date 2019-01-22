@@ -1,9 +1,11 @@
 "use strict";
 
-import * as typeConfigs from './types';
+const typeConfigs = require('./types');
 
-export function getTypeFromStringValue(stringValue) {
+function getTypeFromStringValue(stringValue) {
     const matchingConfig = Object.values(typeConfigs).find(config => config.check(stringValue));
 
     return matchingConfig ? matchingConfig.type : null;
 }
+
+module.exports = {getTypeFromStringValue};

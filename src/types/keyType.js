@@ -1,16 +1,12 @@
 "use strict";
 
-import {varTypes} from "../varTypes";
+const {varTypes} = require('../varTypes');
 
 const KEY_VAR_MATCH_REGEXP = /^\$.*/g;
 
-export const keyType = {
+const keyType = {
     type: varTypes.key,
-    check: str => !!str.match(KEY_VAR_MATCH_REGEXP),
-    format: entry => {
-        return {
-            ...entry,
-            type: varTypes.key
-        }
-    }
+    check: str => !!str.match(KEY_VAR_MATCH_REGEXP)
 };
+
+module.exports = {keyType};

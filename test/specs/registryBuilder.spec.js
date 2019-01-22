@@ -1,6 +1,6 @@
 "use strict";
 
-import {buildRegistry} from "../../src/registryBuilder";
+const {buildRegistry} = require( "../../src/registryBuilder");
 
 const filesContent =
     `

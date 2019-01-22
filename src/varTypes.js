@@ -1,8 +1,12 @@
 "use strict";
 
-export const varTypes = {
+const varTypes = {
     string: 'string',
     map: 'map',
     list: 'list',
     key: 'key'
+};
+
+module.exports = {
+    varTypes
 };
