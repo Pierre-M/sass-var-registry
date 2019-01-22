@@ -12,5 +12,11 @@ export const stringType = {
             ...entry,
             type: varTypes.string
         }
+    },
+    normalize: entry => {
+        return {
+            name: entry.name,
+            value: entry.value
+        }
     }
 };

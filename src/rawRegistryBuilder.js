@@ -1,9 +1,7 @@
 "use strict";
 
-const SASS_VARIABLES_MATCH_REGEXP = /\$(.|[\r\n])*?;/g;
+const SASS_VARIABLES_MATCH_REGEXP = /\$[^:\r\n]*:([^{]|[\r\n])*?;/g;
 const SASS_COMMENT_MATCH_REGEXP = /\/\*(.|[\r\n])*?\*\//g;
-const SASS_MIXIN_MATCH_REGEXP = /\@mixin(.|[\r\n])*?}/g;
-const SASS_FUNCTION_MATCH_REGEXP = /\@function(.|[\r\n])*?}/g;
 
 function buildRawRegistry(content) {
     content = cleanedContent(content);
@@ -14,9 +12,7 @@ function buildRawRegistry(content) {
 
 function cleanedContent(content) {
     return content
-        .replace(SASS_COMMENT_MATCH_REGEXP, '')
-        .replace(SASS_MIXIN_MATCH_REGEXP, '')
-        .replace(SASS_FUNCTION_MATCH_REGEXP, '');
+        .replace(SASS_COMMENT_MATCH_REGEXP, '');
 }
 
 function findVariablesMatches(content) {

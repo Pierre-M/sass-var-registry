@@ -25,18 +25,6 @@ describe('sass-var-registry - rawRegistryBuilder', () => {
         expect(result).to.deep.equal(stringVarIntoCommentSection.rawOutput);
     });
 
-    it('should exclude sass mixins', () => {
-        const result = buildRawRegistry(stringVarIntoMixin.input);
-
-        expect(result).to.deep.equal(stringVarIntoMixin.rawOutput);
-    });
-
-    it('should exclude sass functions', () => {
-        const result = buildRawRegistry(stringVarIntoFunction.input);
-
-        expect(result).to.deep.equal(stringVarIntoFunction.rawOutput);
-    });
-
     it('should add string variables', () => {
         const result = buildRawRegistry(stringVar.input);
 

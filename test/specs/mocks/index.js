@@ -14,6 +14,12 @@ const stringVar = {
             value: 'var',
             type: varTypes.string
         }
+    ],
+    normalizedOutput: [
+        {
+            name: '$var',
+            value: 'var'
+        }
     ]
 };
 
@@ -41,24 +47,6 @@ const stringVarIntoCommentSection = {
     rawOutput: []
 };
 
-const stringVarIntoMixin = {
-    input: `
-        @mixin mixin {
-            $var: var;
-        }
-    `,
-    rawOutput: []
-};
-
-const stringVarIntoFunction = {
-    input: `
-        @function function {
-            $var: var;
-        }
-    `,
-    rawOutput: []
-};
-
 const mapVar = {
     input: `
 $map: (
@@ -80,6 +68,14 @@ key1: value
                 }
             },
             type: varTypes.map
+        }
+    ],
+    normalizedOutput: [
+        {
+            name: '$map',
+            value: {
+                key1: 'key1'
+            }
         }
     ]
 };
@@ -172,16 +168,12 @@ const globalContent = {
     input: `
         ${stringVar.input}
         ${stringVarIntoCommentSection.input}
-        ${stringVarIntoFunction.input}
-        ${stringVarIntoMixin.input}
         ${mapVar.input}
         ${listVar.input}
     `,
     rawOutput: [
         ...stringVar.rawOutput,
         ...stringVarIntoCommentSection.rawOutput,
-        ...stringVarIntoFunction.rawOutput,
-        ...stringVarIntoMixin.rawOutput,
         ...mapVar.rawOutput,
         ...listVar.rawOutput
     ]

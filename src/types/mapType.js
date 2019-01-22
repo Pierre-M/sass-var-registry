@@ -2,6 +2,7 @@
 
 import {varTypes} from "../varTypes";
 import {formatRegistryEntry} from "../entryFormatterService";
+import {normalizeRegistryEntry} from "../entryNormalizerService";
 
 const MAP_VAR_MATCH_REGEXP = /^[\(].*[\)]$/g;
 
@@ -65,14 +66,29 @@ function mapValueParser(mapStringDef) {
     return mapPartFormatter(mapParts);
 }
 
+function format(entry) {
+    return {
+        name: entry.name,
+        value: mapValueParser(entry.value),
+        type: varTypes.map
+    }
+}
+
+function normalize(entry) {
+    return {
+        name: entry.name,
+        value: Object.keys(entry.value).reduce((entries, key) => {
+            const normalizedEntry = normalizeRegistryEntry(entry.value[key]);
+            entries[key] = normalizedEntry ? normalizedEntry.value : null;
+
+            return entries;
+        }, {})
+    }
+}
+
 export const mapType = {
     type: varTypes.map,
     check: str => !!str.match(MAP_VAR_MATCH_REGEXP),
-    format: entry => {
-        return {
-            name: entry.name,
-            value: mapValueParser(entry.value),
-            type: varTypes.map
-        }
-    }
+    format,
+    normalize
 };
