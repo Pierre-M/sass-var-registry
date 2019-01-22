@@ -1,10 +1,20 @@
 "use strict";
 
+import {buildRawRegistry} from "./rawRegistryBuilder";
+import {formatRegistryEntry} from "./entryFormatterService";
 import {handleRegistryReference} from "./registryReferenceHandler";
+import {normalizeRegistryEntry} from "./entryNormalizerService";
 
-export function buildRegistry(formattedEntries) {
-    return formattedEntries.reduce((registry, entry) => {
-        entry = handleRegistryReference(entry, registry);
-        return registry.concat([entry]);
-    }, []);
+
+export function buildRegistry(filesContent) {
+    const rawRegistry = buildRawRegistry(filesContent);
+
+    return rawRegistry
+        .map(formatRegistryEntry)
+        .reduce((entries, entry) => {
+            entry = handleRegistryReference(entry, entries);
+
+            return entries.concat([entry]);
+        }, [])
+        .map(normalizeRegistryEntry);
 }

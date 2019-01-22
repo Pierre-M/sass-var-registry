@@ -18,7 +18,7 @@ const unexistingKey = {
 
 const FAKE_REGISTRY = [mocks.stringVar.formattedOutput[0]];
 
-describe('sass-var-registry - valueConverterService', () => {
+describe('sass-var-registry - registryReferenceHandler', () => {
 
     it('should let "not key var" unchanged', () => {
         const result = handleRegistryReference(mocks.stringVar.formattedOutput[0]);
