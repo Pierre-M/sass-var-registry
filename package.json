@@ -1,12 +1,12 @@
 {
   "name": "sass-var-registry",
   "version": "1.0.0",
-  "description": "",
+  "description": "Parse your sass files content to build a complete variables registry.",
   "main": "index.js",
   "scripts": {
     "test": "karma start test/karma.conf.js"
   },
-  "author": "",
+  "author": "pierremeriau",
   "license": "ISC",
   "devDependencies": {
     "chai": "4.2.0",
