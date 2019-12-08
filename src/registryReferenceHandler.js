@@ -4,6 +4,7 @@ const {varTypes} = require("./varTypes");
 
 function handleRegistryReference(entry, registry) {
 
+    if (!entry) return;
     if (entry.type === varTypes.map) {
         return {
             ...entry,

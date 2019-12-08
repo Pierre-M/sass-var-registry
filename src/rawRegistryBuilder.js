@@ -2,7 +2,8 @@
 
 const SASS_VARIABLES_MATCH_REGEXP = /\$[^:\r\n]*:([^{]|[\r\n])*?;/g;
 const SASS_COMMENT_MATCH_REGEXP = /\/\*(.|[\r\n])*?\*\//g;
-
+const SASS_COMMENT_MATCH_REGEXP2 = /^\s*\/\/.*$/mg;
+const NEWLINES_REGEXP = /\n+/g;
 function buildRawRegistry(content) {
     content = cleanedContent(content);
 
@@ -12,7 +13,7 @@ function buildRawRegistry(content) {
 
 function cleanedContent(content) {
     return content
-        .replace(SASS_COMMENT_MATCH_REGEXP, '');
+        .replace(SASS_COMMENT_MATCH_REGEXP, '').replace(SASS_COMMENT_MATCH_REGEXP2,'').replace(NEWLINES_REGEXP,"\n");
 }
 
 function findVariablesMatches(content) {
