@@ -13,7 +13,7 @@ function buildRawRegistry(content) {
 
 function cleanedContent(content) {
     return content
-        .replace(SASS_COMMENT_MATCH_REGEXP, '').replace(SASS_COMMENT_MATCH_REGEXP2,'').replace(NEWLINE_REGEXP,"\n");
+        .replace(SASS_COMMENT_MATCH_REGEXP, '').replace(SASS_COMMENT_MATCH_REGEXP2,'').replace(NEWLINES_REGEXP,"\n");
 }
 
 function findVariablesMatches(content) {
